@@ -1,5 +1,6 @@
 import { Todo } from "@/lib/drizzle";
 import TodoItem from "./TodoItem";
+import Image from "next/image";
 
 const getData = async () => {
     try {
@@ -23,14 +24,13 @@ const getData = async () => {
 const TodoList = async () => {
 
     const res: { data: Todo[] } = await getData();
-console.log(res)
 
     return (
 
         <div className="max-h-[350px]  mb-4  overflow-y-auto h-[72%] 
         scrollbar-thumb-secondary px-4  scrollbar-track-transparent scrollbar-thin scrollbar-rounded">
             {
-                res.data.map((item: Todo) => {
+               res.data.length===0?<div className="flex flex-col justify-center items-center gap-y-5"><Image src={'/sleep.gif'} width={200} height={200} alt="asdasd" /><p>No Task to show here!!</p></div>: res.data.map((item: Todo) => {
                     return (
                         < TodoItem id={item.id} task={item.task} key={item.id} />
                     )
