@@ -1,12 +1,7 @@
 import { Todo } from "@/lib/drizzle";
 import TodoItem from "./TodoItem";
 import Image from "next/image";
-export const dynamic = 'force-dynamic';
-export const dynamicParams = true;
-export const revalidate = 0 ;
-export const fetchCache = 'force-no-store';
-export const runtime = 'nodejs';
-export const preferredRegion = 'all';
+
 const getData = async () => {
     try {
         const res = await fetch("http://localhost:3000/api/todo", {
