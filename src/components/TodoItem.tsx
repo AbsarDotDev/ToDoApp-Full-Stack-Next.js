@@ -20,7 +20,7 @@ function TodoItem({ id, task }: Todo) {
     try {
       if (id) {
         const body = JSON.stringify({ id: id });
-        const res = await fetch("api/todo", {
+        const res = await fetch("/api/todo", {
           method: "DELETE",
           // headers:{
           //   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
@@ -68,6 +68,7 @@ function TodoItem({ id, task }: Todo) {
           onChange={(e) => setNewTask({ id, task: e.target.value })}
           value={newtask?.task || ""}
           disabled={disabled}
+           className={`py-1 px-2 rounded-md ${disabled?'':'bg-red-100'}`}
         />
         {/* <p className="text-lg font-medium">{task}</p> */}
       </div>
@@ -87,7 +88,7 @@ function TodoItem({ id, task }: Todo) {
             <Image src={"./tick.svg"} width={20} height={20} alt="L p charh" />
           </button>
         )}
-       {loading? <Loader/>: <button onClick={handleDelete}>
+       {disabled?( loading? <Loader/>: <button onClick={handleDelete}>
           {" "}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +107,7 @@ function TodoItem({ id, task }: Todo) {
             />
              
           </svg>
-        </button>}
+        </button>):<></>}
       </div>
     </div>
   );

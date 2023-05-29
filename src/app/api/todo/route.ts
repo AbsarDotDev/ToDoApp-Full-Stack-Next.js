@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { Todo, db, todoTable } from "@/lib/drizzle";
 import { sql } from "@vercel/postgres";
 import { eq } from "drizzle-orm";
-
 export async function GET(request: NextRequest) {
   try {
     await sql`CREATE TABLE IF NOT EXISTS Todos(id serial, Task varchar(255));`;
